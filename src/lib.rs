@@ -1,13 +1,5 @@
 use num;
 
-fn main() {
-    let mut numbers = vec![38, 27, 43, 3, 9, 82, 10];
-    let last = numbers.len() - 1;
-    merge_sort(&mut numbers, 0, last);
-    println!("{:#?}", numbers);
-    // assert_eq!(numbers, vec![3, 9, 10, 27, 38, 43, 82]);
-}
-
 fn merge_sort<T>(arr: &mut Vec<T>, l: usize, r: usize)
 where
     T: num::PrimInt,
