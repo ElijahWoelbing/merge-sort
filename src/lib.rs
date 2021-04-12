@@ -1,3 +1,5 @@
+use num;
+
 fn main() {
     let mut numbers = vec![38, 27, 43, 3, 9, 82, 10];
     let last = numbers.len() - 1;
@@ -6,7 +8,10 @@ fn main() {
     // assert_eq!(numbers, vec![3, 9, 10, 27, 38, 43, 82]);
 }
 
-fn merge_sort(arr: &mut Vec<i32>, l: usize, r: usize) {
+fn merge_sort<T>(arr: &mut Vec<T>, l: usize, r: usize)
+where
+    T: num::PrimInt,
+{
     // find middle index
     if r > l {
         let m = l + (r - l) / 2;
@@ -19,16 +24,18 @@ fn merge_sort(arr: &mut Vec<i32>, l: usize, r: usize) {
     }
 }
 
-fn merge(arr: &mut Vec<i32>, l: usize, m: usize, r: usize) {
+fn merge<T>(arr: &mut Vec<T>, l: usize, m: usize, r: usize)
+where
+    T: num::PrimInt,
+{
     // size of temp arrays
     let l_temp_size = m - l + 1;
     println!("{}", l_temp_size.to_string());
     let r_temp_size = r - m;
     println!("{}", l_temp_size.to_string());
 
-    let mut l_temp_arr: Vec<i32> = vec![0; l_temp_size];
-    println!("{}", l_temp_arr[0]);
-    let mut r_temp_arr: Vec<i32> = vec![0; r_temp_size];
+    let mut l_temp_arr: Vec<T> = vec![num::Zero::zero(); l_temp_size];
+    let mut r_temp_arr: Vec<T> = vec![num::Zero::zero(); r_temp_size];
     // copy values to temporary arrays
     for i in 0..l_temp_size {
         l_temp_arr[i] = arr[l + i];
